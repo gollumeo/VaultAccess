@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using VaultAccess.Domain.Entities;
 
-namespace VaultAccess.Tests.AccessRequests.Application;
+namespace VaultAccess.Tests.Domain.Entities;
 
-public class SubmitAccessRequestTest
+public class AccessRequestTest
 {
     private readonly Guid _userId = Guid.NewGuid();
     

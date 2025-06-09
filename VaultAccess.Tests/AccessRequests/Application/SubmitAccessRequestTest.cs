@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using VaultAccess.Domain.Entities;
 
-namespace VaultAccess.Tests.AccessRequests;
+namespace VaultAccess.Tests.AccessRequests.Application;
 
 public class SubmitAccessRequestTest
 {

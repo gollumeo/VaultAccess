@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using VaultAccess.Domain.Entities;
+using VaultAccess.Domain.Enums;
 
 namespace VaultAccess.Tests.Domain.Entities;
 
@@ -29,7 +30,7 @@ public class AccessRequestTest
     {
         var accessRequest = new AccessRequest(Guid.Empty, _userId);
         
-        accessRequest.Status.Should().Be("pending");
+        accessRequest.Status.Should().Be(AccessRequestStatus.Pending);
     }
 
     [Fact]

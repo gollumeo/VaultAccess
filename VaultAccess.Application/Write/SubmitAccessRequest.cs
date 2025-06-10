@@ -5,8 +5,8 @@ namespace VaultAccess.Application.Write;
 
 public class SubmitAccessRequest : ISubmitAccessRequest
 {
-    public Task<AccessRequest> Execute()
+    public Task<AccessRequest> Execute(Guid userId, Guid vaultId)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new AccessRequest(vaultId, userId));
     }
 }

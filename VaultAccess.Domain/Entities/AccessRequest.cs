@@ -1,11 +1,21 @@
 ﻿using VaultAccess.Domain.Enums;
+using VaultAccess.Domain.Exceptions;
 
 namespace VaultAccess.Domain.Entities;
 
-public class AccessRequest(Guid vaultId, Guid userId)
+public class AccessRequest
 {
-    public Guid VaultId { get; } = vaultId;
-    public Guid UserId { get; } = userId;
+    public AccessRequest(Guid vaultId, Guid userId)
+    {
+        if (vaultId == Guid.Empty || userId == Guid.Empty)
+            throw new InvalidAccessRequest("Cannot create an access request with no user or vault.");
 
-    public AccessRequestStatus Status { get; set; } = AccessRequestStatus.Pending;
+        VaultId = vaultId;
+        UserId = userId;
+        Status = AccessRequestStatus.Pending;
+    }
+
+    public Guid VaultId { get; }
+    public Guid UserId { get; }
+    public AccessRequestStatus Status { get; private set; }
 }

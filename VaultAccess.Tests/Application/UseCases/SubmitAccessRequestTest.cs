@@ -2,6 +2,7 @@
 using VaultAccess.Application.Write;
 using VaultAccess.Domain.Entities;
 using VaultAccess.Domain.Enums;
+using VaultAccess.Domain.Exceptions;
 
 namespace VaultAccess.Tests.Application.UseCases;
 
@@ -44,5 +45,15 @@ public class SubmitAccessRequestTest
         var result = await useCase.Execute(_userId, _vaultId);
         
         result.VaultId.Should().Be(_vaultId);
+    }
+
+    [Fact]
+    public void CannotSubmitAccessRequestWithNoUser()
+    {
+        var emptyUserId = Guid.Empty;
+        var useCase = new SubmitAccessRequest();
+        var useCaseExecution = async () => await useCase.Execute(emptyUserId, _vaultId);
+
+        useCaseExecution.Should().ThrowExactlyAsync<InvalidAccessRequest>();
     }
 }

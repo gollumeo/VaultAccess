@@ -3,5 +3,5 @@
 public enum AccessRequestStatus
 {
     Pending,
-    Approved
+    Granted
 }

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using VaultAccess.Application.Write;
 using VaultAccess.Domain.Entities;
+using VaultAccess.Domain.Enums;
 
 namespace VaultAccess.Tests.Application.UseCases;
 
@@ -24,7 +25,7 @@ public class SubmitAccessRequestTest
         var useCase = new SubmitAccessRequest();
         var result = await useCase.Execute(_userId, _vaultId);
         
-        result.Status.Should().Be("pending");
+        result.Status.Should().Be(AccessRequestStatus.Pending);
     }
 
     [Fact]

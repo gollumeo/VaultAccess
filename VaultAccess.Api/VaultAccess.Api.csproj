@@ -1,19 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Gollumeo.Acherus.Rituals" Version="1.0.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\VaultAccess.Application\VaultAccess.Application.csproj" />
-    <ProjectReference Include="..\VaultAccess.Infrastructure\VaultAccess.Infrastructure.csproj" />
-    <ProjectReference Include="..\VaultAccess.Presentation\VaultAccess.Presentation.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\VaultAccess.Application\VaultAccess.Application.csproj"/>
+        <ProjectReference Include="..\VaultAccess.Infrastructure\VaultAccess.Infrastructure.csproj"/>
+        <ProjectReference Include="..\VaultAccess.Presentation\VaultAccess.Presentation.csproj"/>
+    </ItemGroup>
 
 </Project>

@@ -21,6 +21,9 @@ public class AccessRequest
 
     public void Approve()
     {
+        if (Status == AccessRequestStatus.Granted)
+            throw new InvalidAccessRequest("Access request already granted.");
+
         Status = AccessRequestStatus.Granted;
     }
 }

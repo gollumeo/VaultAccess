@@ -1,8 +1,9 @@
-﻿using VaultAccess.Domain.Entities;
+﻿using Application;
+using VaultAccess.Domain.Entities;
 
 namespace VaultAccess.Application.Contracts;
 
 public interface ISubmitAccessRequest
 {
-    public Task<AccessRequest> Execute(Guid userId, Guid vaultId);
+    public Result<AccessRequest> Execute(Guid userId, Guid vaultId);
 }

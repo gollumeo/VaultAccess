@@ -6,9 +6,9 @@ namespace VaultAccess.Application.Write;
 
 public class ApproveAccessRequest : IApproveAccessRequest
 {
-    public Task<Result<AccessRequest>> Execute(AccessRequest accessRequest)
+    public Result<AccessRequest> Execute(AccessRequest accessRequest)
     {
         accessRequest.Approve();
-        return Task.FromResult(Result<AccessRequest>.Success(accessRequest));
+        return Result<AccessRequest>.Success(accessRequest);
     }
 }

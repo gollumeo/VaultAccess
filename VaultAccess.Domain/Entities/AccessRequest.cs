@@ -18,4 +18,9 @@ public class AccessRequest
     public Guid VaultId { get; }
     public Guid UserId { get; }
     public AccessRequestStatus Status { get; private set; }
+
+    public void Approve()
+    {
+        Status = AccessRequestStatus.Granted;
+    }
 }

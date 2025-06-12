@@ -5,5 +5,5 @@ namespace VaultAccess.Application.Contracts;
 
 public interface IApproveAccessRequest
 {
-    public Task<Result<AccessRequest>> Execute(AccessRequest accessRequest);
+    public Result<AccessRequest> Execute(AccessRequest accessRequest);
 }

@@ -10,41 +10,41 @@ public class SubmitAccessRequestTest
 {
     private readonly Guid _userId = Guid.NewGuid();
     private readonly Guid _vaultId = Guid.NewGuid();
-    
+
     [Fact]
-    public async Task ReturnsAccessRequest()
+    public void ReturnsAccessRequest()
     {
         var useCase = new SubmitAccessRequest();
-        var result = await useCase.Execute(_userId, _vaultId);
+        var result = useCase.Execute(_userId, _vaultId);
 
-        result.Should().BeOfType<AccessRequest>();
+        result.Value.Should().BeOfType<AccessRequest>();
     }
 
     [Fact]
-    public async Task ReturnedAccessRequestShouldBePending()
+    public void ReturnedAccessRequestShouldBePending()
     {
         var useCase = new SubmitAccessRequest();
-        var result = await useCase.Execute(_userId, _vaultId);
-        
-        result.Status.Should().Be(AccessRequestStatus.Pending);
+        var result = useCase.Execute(_userId, _vaultId);
+
+        result.Value.Status.Should().Be(AccessRequestStatus.Pending);
     }
 
     [Fact]
-    public async Task ReturnedAccessRequestShouldBeLinkedToCorrectUser()
+    public void ReturnedAccessRequestShouldBeLinkedToCorrectUser()
     {
         var useCase = new SubmitAccessRequest();
-        var result = await useCase.Execute(_userId, _vaultId);
-        
-        result.UserId.Should().Be(_userId);
+        var result = useCase.Execute(_userId, _vaultId);
+
+        result.Value.UserId.Should().Be(_userId);
     }
-    
+
     [Fact]
-    public async Task ReturnedAccessRequestShouldBeLinkedToCorrectVault()
+    public void ReturnedAccessRequestShouldBeLinkedToCorrectVault()
     {
         var useCase = new SubmitAccessRequest();
-        var result = await useCase.Execute(_userId, _vaultId);
-        
-        result.VaultId.Should().Be(_vaultId);
+        var result = useCase.Execute(_userId, _vaultId);
+
+        result.Value.VaultId.Should().Be(_vaultId);
     }
 
     [Fact]
@@ -52,8 +52,9 @@ public class SubmitAccessRequestTest
     {
         var emptyUserId = Guid.Empty;
         var useCase = new SubmitAccessRequest();
-        var useCaseExecution = async () => await useCase.Execute(emptyUserId, _vaultId);
+        var useCaseExecution = () => useCase.Execute(emptyUserId, _vaultId);
 
-        useCaseExecution.Should().ThrowExactlyAsync<InvalidAccessRequest>();
+        useCaseExecution.Should()
+            .ThrowExactly<InvalidAccessRequest>("Cannot create an access request with no user or vault.");
     }
 }

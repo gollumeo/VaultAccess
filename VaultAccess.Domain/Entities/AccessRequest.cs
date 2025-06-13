@@ -42,6 +42,9 @@ public class AccessRequest
         if (Status == AccessRequestStatus.Rejected)
             throw new InvalidAccessRequest("Access request already rejected.");
 
+        if (Status != AccessRequestStatus.Pending)
+            throw new InvalidAccessRequest("Cannot reject a non-pending access request.");
+
         Status = AccessRequestStatus.Rejected;
     }
 }

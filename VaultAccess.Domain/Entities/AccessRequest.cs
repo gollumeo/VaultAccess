@@ -24,6 +24,9 @@ public class AccessRequest
         if (Status == AccessRequestStatus.Granted)
             throw new InvalidAccessRequest("Access request already granted.");
 
+        if (Status != AccessRequestStatus.Pending)
+            throw new InvalidAccessRequest("Cannot grant access to a non-pending access request.");
+
         Status = AccessRequestStatus.Granted;
     }
 }

@@ -15,6 +15,13 @@ public class AccessRequest
         Status = AccessRequestStatus.Pending;
     }
 
+    /// <summary>
+    ///     🚧For testing purposes only 🚧
+    /// </summary>
+    private AccessRequest()
+    {
+    }
+
     public Guid VaultId { get; }
     public Guid UserId { get; }
     public AccessRequestStatus Status { get; private set; }
@@ -28,5 +35,13 @@ public class AccessRequest
             throw new InvalidAccessRequest("Cannot grant access to a non-pending access request.");
 
         Status = AccessRequestStatus.Granted;
+    }
+
+    public void Reject()
+    {
+        if (Status == AccessRequestStatus.Rejected)
+            throw new InvalidAccessRequest("Access request already rejected.");
+
+        Status = AccessRequestStatus.Rejected;
     }
 }

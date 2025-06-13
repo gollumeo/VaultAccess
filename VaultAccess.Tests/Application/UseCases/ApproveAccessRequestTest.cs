@@ -3,6 +3,7 @@ using VaultAccess.Application.Write;
 using VaultAccess.Domain.Entities;
 using VaultAccess.Domain.Enums;
 using VaultAccess.Domain.Exceptions;
+using VaultAccess.Tests.Fakes;
 
 namespace VaultAccess.Tests.Application.UseCases;
 
@@ -34,5 +35,17 @@ public class ApproveAccessRequestTest
 
         approvalConstruction.Should()
             .ThrowExactly<InvalidAccessRequest>("Access request already granted.");
+    }
+
+    [Fact]
+    public void CannotGrantAccessIfAccessRequestIsNotPending()
+    {
+        var accessRequest = new RejectedAccessRequest(_vaultId, _userId);
+        var useCase = new ApproveAccessRequest();
+
+        var approvalConstruction = () => useCase.Execute(accessRequest);
+
+        approvalConstruction.Should()
+            .ThrowExactly<InvalidAccessRequest>("Cannot grant access to a non-pending access request.");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using VaultAccess.Domain.Enums;
 using VaultAccess.Domain.Exceptions;
+using VaultAccess.Domain.Rules;
 
 namespace VaultAccess.Domain.Entities;
 
@@ -28,23 +29,13 @@ public class AccessRequest
 
     public void Approve()
     {
-        if (Status == AccessRequestStatus.Granted)
-            throw new InvalidAccessRequest("Access request already granted.");
-
-        if (Status != AccessRequestStatus.Pending)
-            throw new InvalidAccessRequest("Cannot grant access to a non-pending access request.");
-
+        AccessRequestRules.EnsureIsApprovable(Status);
         Status = AccessRequestStatus.Granted;
     }
 
     public void Reject()
     {
-        if (Status == AccessRequestStatus.Rejected)
-            throw new InvalidAccessRequest("Access request already rejected.");
-
-        if (Status != AccessRequestStatus.Pending)
-            throw new InvalidAccessRequest("Cannot reject a non-pending access request.");
-
+        AccessRequestRules.EnsureIsRejectable(Status);
         Status = AccessRequestStatus.Rejected;
     }
 }

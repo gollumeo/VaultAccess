@@ -3,7 +3,7 @@ using VaultAccess.Application.Write;
 using VaultAccess.Domain.Entities;
 using VaultAccess.Domain.Enums;
 using VaultAccess.Domain.Exceptions;
-using VaultAccess.Tests.Fakes;
+using VaultAccess.Tests.Factory;
 
 namespace VaultAccess.Tests.Application.UseCases;
 
@@ -40,7 +40,7 @@ public class ApproveAccessRequestTest
     [Fact]
     public void CannotGrantAccessIfAccessRequestIsNotPending()
     {
-        var accessRequest = new RejectedAccessRequest(_vaultId, _userId);
+        var accessRequest = AccessRequestFakeFactory.WithStatus(_vaultId, _userId, AccessRequestStatus.Rejected);
         var useCase = new ApproveAccessRequest();
 
         var approvalConstruction = () => useCase.Execute(accessRequest);

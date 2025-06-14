@@ -5,6 +5,6 @@ namespace VaultAccess.Application.Contracts;
 public interface IAccessRequestRepository
 {
     AccessRequest? GetById(Guid id);
-    void Save(AccessRequest accessRequest);
+    void Add(AccessRequest accessRequest);
     IEnumerable<AccessRequest> ListForUser(Guid userId);
 }

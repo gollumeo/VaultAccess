@@ -23,6 +23,8 @@ public class AccessRequest
     {
     }
 
+    public Guid Id { get; private set; } = Guid.NewGuid();
+
     public Guid VaultId { get; }
     public Guid UserId { get; }
     public AccessRequestStatus Status { get; private set; }
